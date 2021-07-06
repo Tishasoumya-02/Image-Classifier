@@ -1,0 +1,47 @@
+.classify
+{
+  font-size:50px;
+  font-family: 'Amatic SC', cursive;
+  padding-left: 30px;
+
+}
+.slogan
+{
+  font-size: large;
+  font-weight: 700;
+  font-family: 'Poiret One', cursive;
+  padding-left: 40px;
+}
+.instructions
+{
+  font-size: 30px;
+  font-family: 'Amatic SC', cursive,bold;
+  text-align: center;
+  font-weight: bold;
+  padding-bottom: 10px;
+  
+
+}
+.footer
+{
+  color: white;
+  padding-top: 40px;
+  text-align: center;
+}
+
+.predict
+{
+  font-family: 'Alegreya Sans SC', sans-serif;
+  font-weight: bolder;
+  display: block;
+  border: 5px;
+  border-radius: 50%;
+  color:rgb(4, 14, 56);
+  text-align: center;
+  padding: 30px;
+  font-size: 20px;
+}
+button{
+  font-style: italic;
+}
+

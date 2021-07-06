@@ -1,0 +1,70 @@
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport"
+			content="width=device-width, initial-scale=1.0" />
+		<title>Animal Classify</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
+<link rel="manifest" href="favicon_io/site.webmanifest">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link href="styles.css" rel="stylesheet">
+		<script src=
+    "https://unpkg.com/ml5@0.4.3/dist/ml5.min.js">
+		</script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<header class="classify">Classifier</header>
+<div class="slogan">Classification Is Fun!!</div>
+<div class="instructions">Upload Images of Animals For Accuracy</div>
+	<body style="background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);">
+		
+    <center>
+			<img src="" alt="" id="image" width="500px" height="500px" style="display: block;"/>
+			</br></br>
+			<input type="file" class="btn btn-info" accept="image/*" onchange="loadFile(event)"	name="image" id="choose-file" /><br><br>
+    
+			<button type="button" class="btn btn-dark" onclick="predict()">Predict</button>
+		</center>
+
+    <div class="predict" id="p"></div>
+	</body>
+<footer class="footer">Designed and Developed with 💖 and 💧 by  <a href="https://www.linkedin.com/in/tisha-soumya-380290204/" style="color: black;">Tisha Soumya</a></footer>
+
+
+  <script>
+		var loadFile = function (event) {
+		var image = document.getElementById("image");
+		image.src = URL.createObjectURL(event.target.files[0]);
+	};
+	const classifier = ml5.imageClassifier("MobileNet", modelLoaded);
+
+	// When the model is loaded
+	function modelLoaded() {
+	console.log("Model Loaded!");
+	}
+			
+	function predict() {
+	classifier.predict(document.getElementById("image"),
+			function (err, results) {
+       var ac=results[0].confidence*100;
+
+        document.getElementById("p").innerHTML = "The animal in the image is predicited to be " +results[0].label+" with an accuracy of "+ac.toFixed(5)+ "% ";
+     
+			console.log(results[0].confidence);
+      console.log(results[0].label);
+				});
+			}
+
+		</script>
+</html>
